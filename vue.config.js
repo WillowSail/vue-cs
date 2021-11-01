@@ -37,7 +37,8 @@ module.exports = {
     // 配置快捷引用路径路径
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve('src'),
+        '@views': resolve('src/views')
       }
     }
   },
