@@ -1,5 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// 引入顶部进度条
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import '@styles/nprogress.scss' // 自定义进度条样式
+NProgress.configure({ showSpinner: false, minimum: 0.1 }) // 取消加载环
 
 Vue.use(VueRouter)
 
@@ -20,6 +25,16 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+// 全局前置导航守卫
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+// 全局后置导航守卫
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router

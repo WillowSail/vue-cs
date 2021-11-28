@@ -38,7 +38,8 @@ module.exports = {
     resolve: {
       alias: {
         '@': resolve('src'),
-        '@views': resolve('src/views')
+        '@views': resolve('src/views'),
+        '@styles': resolve('src/assets/styles')
       }
     }
   },
@@ -99,5 +100,12 @@ module.exports = {
           config.optimization.runtimeChunk('single')
         }
       )
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "./src/assets/styles/variables";`
+      }
+    }
   }
 }
